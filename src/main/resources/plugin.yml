@@ -1,0 +1,9 @@
+name: Vampcraft
+version: "1.0"
+api-version: "1.16"
+author: 7isenko
+main: io.github._7isenko.vampcraft.Vampcraft
+commands:
+  vamp:
+    description: descr in /help
+    usage: syntax
