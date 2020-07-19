@@ -22,7 +22,7 @@ public class Vampcraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new VampireAttackListener(), plugin);
         getServer().getPluginManager().registerEvents(new VampireEatListener(), plugin);
         getServer().getPluginManager().registerEvents(new VampireDeathListener(), plugin);
-        runnable = new VampireRunnable(240);
+        runnable = new VampireRunnable(100);
     }
 
     @Override
