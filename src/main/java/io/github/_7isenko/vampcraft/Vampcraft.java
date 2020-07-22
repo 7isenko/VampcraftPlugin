@@ -16,7 +16,7 @@ public class Vampcraft extends JavaPlugin {
     public static ArrayList<Player> vampires;
     public static VampireRunnable runnable;
 
-    public static ArrayList<EntityType> edibleTypes = new ArrayList<>(Arrays.asList(EntityType.WOLF, EntityType.PLAYER, EntityType.GUARDIAN, EntityType.LLAMA, EntityType.TRADER_LLAMA, EntityType.BAT, EntityType.BEE, EntityType.CAT, EntityType.CHICKEN, EntityType.COW, EntityType.DOLPHIN, EntityType.DONKEY, EntityType.FOX, EntityType.HOGLIN, EntityType.HORSE, EntityType.PILLAGER, EntityType.ILLUSIONER, EntityType.VILLAGER, EntityType.EVOKER, EntityType.LLAMA, EntityType.MULE, EntityType.MUSHROOM_COW, EntityType.OCELOT, EntityType.PANDA, EntityType.PARROT, EntityType.PIG, EntityType.PIGLIN, EntityType.POLAR_BEAR, EntityType.RABBIT, EntityType.SHEEP, EntityType.SQUID, EntityType.TURTLE, EntityType.VINDICATOR, EntityType.WANDERING_TRADER, EntityType.WITCH));
+    public static ArrayList<EntityType> edibleTypes = new ArrayList<>(Arrays.asList(EntityType.WOLF, EntityType.PLAYER, EntityType.GUARDIAN, EntityType.LLAMA, EntityType.BAT, EntityType.CHICKEN, EntityType.COW, EntityType.DONKEY, EntityType.HORSE, EntityType.ILLUSIONER, EntityType.VILLAGER, EntityType.EVOKER, EntityType.LLAMA, EntityType.MULE, EntityType.MUSHROOM_COW, EntityType.OCELOT, EntityType.PARROT, EntityType.PIG, EntityType.POLAR_BEAR, EntityType.RABBIT, EntityType.SHEEP, EntityType.SQUID, EntityType.VINDICATOR, EntityType.WITCH));
     public static ArrayList<PotionEffect> goodPotionEffects = PotionHelper.getGoodVampirePotions();
     public static ArrayList<PotionEffect> badPotionEffects = PotionHelper.getBadVampirePotions();
     public static final int period = 100;

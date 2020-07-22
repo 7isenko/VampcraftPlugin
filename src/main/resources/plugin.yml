@@ -7,3 +7,4 @@ commands:
   vamp:
     description: sets player as vampire
     usage: /vamp <player>
+    permission: op

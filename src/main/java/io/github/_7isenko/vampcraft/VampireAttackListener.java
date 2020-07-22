@@ -26,20 +26,20 @@ public class VampireAttackListener implements Listener {
             if (equipment != null && equipment.getItemInMainHand().getType().name().contains("GOLDEN")) {
                 Random r = new Random();
                 Player vampire = (Player) event.getEntity();
-                if (r.nextDouble() > 0.2D) vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.SLOW, 0));
-                if (r.nextDouble() > 0.3D)
+                if (r.nextDouble() > 0.6D) vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.SLOW, 0));
+                if (r.nextDouble() > 0.7D)
                     vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.BLINDNESS, 0));
-                if (r.nextDouble() > 0.5D) {
+                if (r.nextDouble() > 0.9D) {
                     event.setDamage(event.getDamage() * 2);
                     vampire.getWorld().playSound(vampire.getLocation(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1, 1);
-                    vampire.getWorld().spawnParticle(Particle.REDSTONE, vampire.getLocation(), 20, 0.5, 2, 0.5, new Particle.DustOptions(Color.BLUE, 1));
+                    vampire.getWorld().spawnParticle(Particle.SPIT, vampire.getLocation(), 20, 0.5, 2, 0.5);
                 }
-                if (r.nextDouble() > 0.6D) {
+                if (r.nextDouble() > 0.9D) {
                     for (PotionEffect goodPotionEffect : Vampcraft.goodPotionEffects) {
                         vampire.removePotionEffect(goodPotionEffect.getType());
                     }
                     vampire.getWorld().playSound(vampire.getLocation(), Sound.ITEM_TOTEM_USE, 1, 1);
-                    vampire.getWorld().spawnParticle(Particle.REDSTONE, vampire.getLocation(), 60, 0.5, 2, 0.5, new Particle.DustOptions(Color.YELLOW, 1));
+                    vampire.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, vampire.getLocation(), 60, 0.5, 2, 0.5);
                     Vampcraft.runnable.addToOffList(vampire);
                 }
             }
@@ -62,7 +62,7 @@ public class VampireAttackListener implements Listener {
                     case 2:
                         vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.REGENERATION, 20, 2));
                         vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.SATURATION, 2, 0));
-                        victim.getWorld().spawnParticle(Particle.REDSTONE, victim.getLocation(), 30, 0.5, 2, 0.5, new Particle.DustOptions(Color.RED, 1));
+                        victim.getWorld().spawnParticle(Particle.REDSTONE, victim.getLocation(), 30, 0.5, 2, 0.5);
                     case 3:
                         break;
                     case 4:

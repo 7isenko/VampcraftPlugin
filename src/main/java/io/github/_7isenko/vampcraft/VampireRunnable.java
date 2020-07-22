@@ -54,7 +54,7 @@ public class VampireRunnable extends BukkitRunnable {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 10, 2, 3, 2, new Particle.DustOptions(Color.BLACK, 1));
+                            player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 10, 2, 3, 2);
                         }
                     }.runTaskLater(Vampcraft.plugin, i);
                 }

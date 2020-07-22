@@ -18,7 +18,7 @@ public class VampireDeathListener implements Listener {
                 event.getDrops().clear();
             }
             player.getWorld().spawnEntity(player.getLocation(), EntityType.BAT);
-            player.getWorld().spawnParticle(Particle.SQUID_INK, player.getLocation(), 100, 1, 1, 1);
+            player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 100, 1, 1, 1);
         }
     }
 }

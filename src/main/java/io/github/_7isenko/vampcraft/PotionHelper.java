@@ -12,7 +12,6 @@ public class PotionHelper {
     public static ArrayList<PotionEffect> getGoodVampirePotions() {
         ArrayList<PotionEffect> effects = new ArrayList<>();
         effects.add(getPotion(PotionEffectType.NIGHT_VISION, period + 220, 0));
-        effects.add(getPotion(PotionEffectType.DOLPHINS_GRACE, 0));
         effects.add(getPotion(PotionEffectType.SPEED, 1));
         effects.add(getPotion(PotionEffectType.INCREASE_DAMAGE, 0));
         effects.add(getPotion(PotionEffectType.DAMAGE_RESISTANCE, 0));
@@ -30,7 +29,7 @@ public class PotionHelper {
         return effects;
     }
     public static PotionEffect getPotion(PotionEffectType pet, int period, int amplifier) {
-        return new PotionEffect(pet, period, amplifier, false, false, true);
+        return new PotionEffect(pet, period, amplifier, false, false, null);
     }
 
     public static PotionEffect getPotion(PotionEffectType pet, int amplifier) {
