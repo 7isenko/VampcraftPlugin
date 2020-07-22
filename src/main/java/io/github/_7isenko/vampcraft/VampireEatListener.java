@@ -15,5 +15,4 @@ public class VampireEatListener implements Listener {
             }
         }
     }
-
 }

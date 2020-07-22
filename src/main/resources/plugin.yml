@@ -5,5 +5,5 @@ author: 7isenko
 main: io.github._7isenko.vampcraft.Vampcraft
 commands:
   vamp:
-    description: descr in /help
-    usage: syntax
+    description: sets player as vampire
+    usage: /vamp <player>

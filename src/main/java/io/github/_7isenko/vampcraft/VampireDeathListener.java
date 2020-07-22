@@ -12,7 +12,11 @@ public class VampireDeathListener implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         if (Vampcraft.vampires.contains(event.getEntity())) {
             Player player = event.getEntity();
-            event.setDeathMessage(player.getName() + " flew away");
+            if (player.getBedSpawnLocation() != null) {
+                event.setDeathMessage(player.getName() + " flew away");
+                event.setKeepInventory(true);
+                event.getDrops().clear();
+            }
             player.getWorld().spawnEntity(player.getLocation(), EntityType.BAT);
             player.getWorld().spawnParticle(Particle.SQUID_INK, player.getLocation(), 100, 1, 1, 1);
         }
