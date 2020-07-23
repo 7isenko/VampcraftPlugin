@@ -16,6 +16,8 @@ public class PotionHelper {
         effects.add(getPotion(PotionEffectType.INCREASE_DAMAGE, 0));
         effects.add(getPotion(PotionEffectType.DAMAGE_RESISTANCE, 0));
         effects.add(getPotion(PotionEffectType.FAST_DIGGING, 0));
+        effects.add(getPotion(PotionEffectType.INVISIBILITY, 0));
+        effects.add(getPotion(PotionEffectType.JUMP, 2));
         return effects;
     }
 

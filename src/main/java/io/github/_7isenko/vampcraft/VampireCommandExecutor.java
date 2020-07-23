@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.inventivetalent.glow.GlowAPI;
 
 public class VampireCommandExecutor implements CommandExecutor {
 
@@ -14,6 +15,7 @@ public class VampireCommandExecutor implements CommandExecutor {
             if (Vampcraft.vampires.contains(player)) {
                 Vampcraft.vampires.remove(player);
                 player.sendMessage("Now you are a human");
+                player.getNearbyEntities(80, 60, 80).forEach(entity -> GlowAPI.setGlowing(entity, false, player));
             } else {
                 Vampcraft.vampires.add(player);
                 player.sendMessage("You become a vampire");

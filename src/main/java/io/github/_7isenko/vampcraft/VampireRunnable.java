@@ -43,10 +43,8 @@ public class VampireRunnable extends BukkitRunnable {
                         player.addPotionEffect(effect, true);
                     return;
                 }
-                // check caving during day
-                if (location.getY() > 60 || (location.getY() > 50 && world.getHighestBlockAt(location).getType() == Material.WATER))
-                    return;
             }
+
             if (offList.contains(player)) {
                 offList.remove(player);
                 return;
@@ -60,7 +58,6 @@ public class VampireRunnable extends BukkitRunnable {
             for (PotionEffect effect : Vampcraft.goodPotionEffects)
                 player.addPotionEffect(effect, true);
 
-            player.addPotionEffect(PotionHelper.getPotion(PotionEffectType.INVISIBILITY, 0), true);
             for (int i = 0; i < (period + 20); i++) {
                 new BukkitRunnable() {
                     @Override

@@ -1,6 +1,5 @@
 package io.github._7isenko.vampcraft;
 
-import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -25,25 +24,28 @@ public class VampireAttackListener implements Listener {
 
         if (event.getDamager() instanceof LivingEntity && event.getEntity() instanceof Player && Vampcraft.vampires.contains(event.getEntity())) {
             EntityEquipment equipment = ((LivingEntity) event.getDamager()).getEquipment();
-            if (equipment != null && equipment.getItemInMainHand().getType().name().contains("GOLDEN")) {
-                Random r = new Random();
-                Player vampire = (Player) event.getEntity();
-                if (r.nextDouble() > 0.6D) vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.SLOW, 0));
-                if (r.nextDouble() > 0.7D)
-                    vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.BLINDNESS, 0));
-                if (r.nextDouble() > 0.9D) {
-                    event.setDamage(event.getDamage() * 2);
-                    vampire.getWorld().playSound(vampire.getLocation(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1, 4);
-                    vampire.getWorld().spawnParticle(Particle.SPIT, vampire.getLocation(), 30, 0.5, 2, 0.5);
+            if (equipment == null || !equipment.getItemInMainHand().getType().name().contains("GOLD")) {
+                event.setCancelled(true);
+                return;
+            }
+
+            Random r = new Random();
+            Player vampire = (Player) event.getEntity();
+            if (r.nextDouble() > 0.6D) vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.SLOW, 0));
+            if (r.nextDouble() > 0.7D)
+                vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.BLINDNESS, 0));
+            if (r.nextDouble() > 0.9D) {
+                event.setDamage(event.getDamage() * 2);
+                vampire.getWorld().playSound(vampire.getLocation(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1, 4);
+                vampire.getWorld().spawnParticle(Particle.SPIT, vampire.getLocation(), 30, 0.5, 2, 0.5);
+            }
+            if (r.nextDouble() > 0.9D) {
+                for (PotionEffect goodPotionEffect : Vampcraft.goodPotionEffects) {
+                    vampire.removePotionEffect(goodPotionEffect.getType());
                 }
-                if (r.nextDouble() > 0.90D) {
-                    for (PotionEffect goodPotionEffect : Vampcraft.goodPotionEffects) {
-                        vampire.removePotionEffect(goodPotionEffect.getType());
-                    }
-                    vampire.getWorld().playSound(vampire.getLocation(), Sound.ITEM_TOTEM_USE, 0.3f, 4);
-                    vampire.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, vampire.getLocation(), 60, 0.5, 2, 0.5);
-                    Vampcraft.runnable.addToOffList(vampire);
-                }
+                vampire.getWorld().playSound(vampire.getLocation(), Sound.ITEM_TOTEM_USE, 0.3f, 4);
+                vampire.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, vampire.getLocation(), 60, 0.5, 2, 0.5);
+                Vampcraft.runnable.addToOffList(vampire);
             }
         }
 
@@ -80,7 +82,7 @@ public class VampireAttackListener implements Listener {
         EntityEquipment equipment = entity.getEquipment();
         if (equipment == null) return lvl;
         for (ItemStack armor : equipment.getArmorContents()) {
-            if (armor != null && armor.getType().name().contains("GOLDEN"))
+            if (armor != null && armor.getType().name().contains("GOLD"))
                 lvl++;
         }
         return lvl;
