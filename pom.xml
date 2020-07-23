@@ -32,6 +32,13 @@
             <version>1.12.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.inventivetalent</groupId>
+            <artifactId>glowapi</artifactId>
+            <version>1.4.6-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/dir/GlowAPI-1.4.6-SNAPSHOT.jar</systemPath>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

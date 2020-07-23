@@ -23,9 +23,7 @@ public class Vampcraft extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // TODO: enabling logic
         plugin = this;
-        // TODO: load from file
         vampires = new ArrayList<>();
         this.getCommand("vamp").setExecutor(new VampireCommandExecutor());
         getServer().getPluginManager().registerEvents(new VampireAttackListener(), plugin);
@@ -36,6 +34,5 @@ public class Vampcraft extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // TODO: save vampires to the file
     }
 }

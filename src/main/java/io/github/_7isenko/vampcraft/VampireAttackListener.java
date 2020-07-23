@@ -1,6 +1,7 @@
 package io.github._7isenko.vampcraft;
 
 import org.bukkit.Color;
+import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
@@ -11,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -31,14 +33,14 @@ public class VampireAttackListener implements Listener {
                     vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.BLINDNESS, 0));
                 if (r.nextDouble() > 0.9D) {
                     event.setDamage(event.getDamage() * 2);
-                    vampire.getWorld().playSound(vampire.getLocation(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1, 1);
-                    vampire.getWorld().spawnParticle(Particle.SPIT, vampire.getLocation(), 20, 0.5, 2, 0.5);
+                    vampire.getWorld().playSound(vampire.getLocation(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1, 4);
+                    vampire.getWorld().spawnParticle(Particle.SPIT, vampire.getLocation(), 30, 0.5, 2, 0.5);
                 }
-                if (r.nextDouble() > 0.9D) {
+                if (r.nextDouble() > 0.90D) {
                     for (PotionEffect goodPotionEffect : Vampcraft.goodPotionEffects) {
                         vampire.removePotionEffect(goodPotionEffect.getType());
                     }
-                    vampire.getWorld().playSound(vampire.getLocation(), Sound.ITEM_TOTEM_USE, 1, 1);
+                    vampire.getWorld().playSound(vampire.getLocation(), Sound.ITEM_TOTEM_USE, 0.3f, 4);
                     vampire.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, vampire.getLocation(), 60, 0.5, 2, 0.5);
                     Vampcraft.runnable.addToOffList(vampire);
                 }
@@ -55,14 +57,13 @@ public class VampireAttackListener implements Listener {
                 switch (getGoldenLevel(victim)) {
                     case 0:
                         victim.addPotionEffect(PotionHelper.getPotion(PotionEffectType.WITHER, 100, 0));
-                        vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.SATURATION, 4, 0));
                     case 1:
                         victim.addPotionEffect(PotionHelper.getPotion(PotionEffectType.BLINDNESS, 20, 0));
                         victim.addPotionEffect(PotionHelper.getPotion(PotionEffectType.SLOW, 20, 0));
                     case 2:
                         vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.REGENERATION, 20, 2));
                         vampire.addPotionEffect(PotionHelper.getPotion(PotionEffectType.SATURATION, 2, 0));
-                        victim.getWorld().spawnParticle(Particle.REDSTONE, victim.getLocation(), 30, 0.5, 2, 0.5);
+                        victim.getWorld().spawnParticle(Particle.BLOCK_CRACK, victim.getLocation(), 30, 0.5, 2, 0.5, new MaterialData(Material.REDSTONE_BLOCK));
                     case 3:
                         break;
                     case 4:

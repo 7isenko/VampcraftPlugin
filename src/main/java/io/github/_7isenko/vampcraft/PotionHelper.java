@@ -33,6 +33,6 @@ public class PotionHelper {
     }
 
     public static PotionEffect getPotion(PotionEffectType pet, int amplifier) {
-        return PotionHelper.getPotion(pet, (period + 20), amplifier);
+        return PotionHelper.getPotion(pet, (period + 40), amplifier);
     }
 }

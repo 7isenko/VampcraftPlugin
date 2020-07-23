@@ -1,12 +1,19 @@
 package io.github._7isenko.vampcraft;
 
 import org.bukkit.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.inventivetalent.glow.GlowAPI;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 
 public class VampireRunnable extends BukkitRunnable {
     private int period;
@@ -33,7 +40,7 @@ public class VampireRunnable extends BukkitRunnable {
                 if (world.getHighestBlockAt(location).getY() <= location.getY()) {
                     player.setFireTicks(period);
                     for (PotionEffect effect : Vampcraft.badPotionEffects)
-                        player.addPotionEffect(effect);
+                        player.addPotionEffect(effect, true);
                     return;
                 }
                 // check caving during day
@@ -46,23 +53,30 @@ public class VampireRunnable extends BukkitRunnable {
             }
 
             // night or caving logic
+            List<Entity> entities = player.getNearbyEntities(40, 40, 40);
+            removeNotLivingEntities(entities);
+            GlowAPI.setGlowing(entities, GlowAPI.Color.RED, player);
+
             for (PotionEffect effect : Vampcraft.goodPotionEffects)
-                player.addPotionEffect(effect);
-            if (player.getSaturation() >= 10f) {
-                player.addPotionEffect(PotionHelper.getPotion(PotionEffectType.INVISIBILITY, 0));
-                for (int i = 0; i < (period + 20); i++) {
-                    new BukkitRunnable() {
-                        @Override
-                        public void run() {
-                            player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 10, 2, 3, 2);
-                        }
-                    }.runTaskLater(Vampcraft.plugin, i);
-                }
+                player.addPotionEffect(effect, true);
+
+            player.addPotionEffect(PotionHelper.getPotion(PotionEffectType.INVISIBILITY, 0), true);
+            for (int i = 0; i < (period + 20); i++) {
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        player.getWorld().spawnParticle(Particle.SMOKE_NORMAL, player.getLocation(), 30, 3, 2, 3, 0.01);
+                    }
+                }.runTaskLater(Vampcraft.plugin, i);
             }
         });
     }
 
     public void addToOffList(Player player) {
         offList.add(player);
+    }
+
+    private void removeNotLivingEntities(List<Entity> entities) {
+        entities.removeIf(entity -> !(entity instanceof LivingEntity));
     }
 }
