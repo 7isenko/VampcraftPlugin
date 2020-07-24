@@ -50,7 +50,7 @@ public class VampireRunnable extends BukkitRunnable {
                 return;
             }
 
-            // night or caving logic
+            // night or cover logic
             List<Entity> entities = player.getNearbyEntities(40, 40, 40);
             removeNotLivingEntities(entities);
             GlowAPI.setGlowing(entities, GlowAPI.Color.RED, player);
